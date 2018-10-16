@@ -1,0 +1,53 @@
+$lt-gray: #ddd;
+$background-dark: #2e2e2e;
+$background-light: #3f3f3f;
+$background-pale: #d1d1d1;
+
+$background-ja:#fbda9a;
+.footer{
+    background-image: url('/assets/images/footer.jpg');
+    background-size: 100% 100% ;
+    margin: 0px 0px 0px 0px ;
+    padding-top : 40px ; 
+}
+
+.btn-facebook {color:#fff!important; background-color:#3f3f3f!important;}
+.btn-youtube{color:#fff!important;background-color:#3f3f3f!important;}
+.btn-linkedin{color:#fff!important;background-color:#3f3f3f!important;}
+.btn-twitter{color:#fff!important;background-color:#3f3f3f!important;}
+
+.footer-txt{
+    color : rgb(209, 209, 209) ;
+    font-size: 90% ;
+    line-height: 90% ;
+    text-align: center ;
+}
+
+.footer-input{
+    border: none ;
+    text-decoration: none ;
+    background: #3f3f3f ;
+    width: 100% ;
+    height: 37px;
+    color:#d1d1d1 ;
+    text-align: center ;
+}
+.footer-btn{
+    background-color: #fbda9a ;
+    width: 100%;
+    height: 37px ;
+    border :none ;
+    margin: 1% ;
+    font-size: 80% ;
+}
+.footer-btn:hover{
+    background-color: #bea26a ;
+}
+
+.footer-link{
+    color:rgb(173, 173, 173) ;
+}
+.footer-link:hover {
+    background-color:#fbda9a ;
+    color :black ;
+}

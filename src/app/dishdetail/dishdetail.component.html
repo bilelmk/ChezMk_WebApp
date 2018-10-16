@@ -1,0 +1,101 @@
+<div class="container">
+   
+   
+  
+  
+  <div *ngIf="dish" [@Visibility]="Visibility" [@expand]>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <h3>{{dish.name | uppercase}}</h3>
+        </mat-card-title>
+      </mat-card-header>
+      <img mat-card-image src="{{BaseURL+dish.image}}" alt={{dish.name}}>
+      <mat-card-content>
+        <p>{{dish.description}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button [routerLink]="['/dishdetail',prev]">
+          <span class="fa fa-chevron-left fa-lg"></span>
+        </button>
+        <button mat-button (click)="goBack()">BACK</button>
+        <button mat-button>LIKE</button>
+        <button mat-button>SHARE</button>
+        <button mat-button [routerLink]="['/dishdetail',next]">
+          <span class="fa fa-chevron-right fa-lg"></span>
+        </button>
+
+      </mat-card-actions>
+    </mat-card>
+    
+  </div>
+
+  <div  *ngIf="dish" [@Visibility]="Visibility" [@expand]>
+    <mat-list  >
+        <h3>Comments</h3>
+      <mat-list-item *ngFor="let com of dish.comments " >
+          <p mat-line>{{ com.comment }}</p>
+          <p mat-line>{{ com.rating }} Stars</p>
+          <p mat-line>--{{ com.author }} 
+              {{ com.date | date }}
+          </p>
+      </mat-list-item>
+
+
+      <mat-list *ngIf="CommentForm.valid">
+        <mat-list-item>
+          <h1 mat-line> {{ CommentForm.get('comment').value }}  </h1>
+           <p mat-line> {{ CommentForm.get('rating').value }}  Stars</p>
+           <p mat-line><span>-- {{ CommentForm.get('author').value }}</span> </p>
+         </mat-list-item>
+       </mat-list>
+       
+        <div >
+
+
+        <form novalidate [formGroup]="CommentForm" (ngSubmit)="onSubmit()">
+          
+            <mat-form-field class="full-width"  >
+              <input matInput  formControlName="author" placeholder="Name" type="text" required>
+            </mat-form-field>
+
+            <mat-slider
+            formControlName="rating"
+            thumbLabel
+            tickInterval="5"
+            min="0"
+            max="5">
+                
+            </mat-slider>
+        
+            <mat-form-field class="full-width" >
+                <textarea matInput formControlName="comment" placeholder="Your Comment" rows=8></textarea>
+              
+            </mat-form-field>
+            
+            <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="CommentForm.invalid">Submit</button>
+
+        </form>
+    </div>
+
+    </mat-list>
+  </div>
+
+
+    <div [hidden]="dish || errMess">
+   
+      <mat-spinner></mat-spinner><h4>Loading.....Please wait</h4>
+     
+    </div>
+
+    <div *ngIf="errMess" >
+        <h2>Error</h2>
+        <h4>{{ errMess }}</h4>
+    </div>
+   
+  </div>
+   
+
+  
+

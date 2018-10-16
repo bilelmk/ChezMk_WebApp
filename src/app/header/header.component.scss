@@ -1,0 +1,31 @@
+$lt-gray: #ddd;
+$background-dark: #2e2e2e;
+$background-light: #5a5a5a;
+$background-pale: #d1d1d1;
+
+$background-ja:#fbda9a;
+
+
+@mixin zero-margin($pad-up-down, $pad-left-right) {
+    margin: 0px auto;
+    padding: $pad-up-down $pad-left-right;
+}
+
+.jumbotron {
+    @include zero-margin(70px,30px);
+    background: $background-light ;
+    color:floralwhite;
+    min-height: 150px;
+}
+.active {
+    background: $background-light ;
+}
+.toolbar{
+    background: $background-dark;
+    color: $background-pale ;
+
+}
+.menu-btn{
+    color:$background-pale ;
+    font-size: 150% ;
+}
