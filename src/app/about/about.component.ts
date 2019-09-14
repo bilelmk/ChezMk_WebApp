@@ -32,6 +32,7 @@ export class AboutComponent implements OnInit {
   ngOnInit() {
     this.leaderService.getLeaders().subscribe(leaders => this.leaders = leaders,
       errmess => this.errMess = <any>errmess);
+      console.log(this.leaders);
   }
 
 }

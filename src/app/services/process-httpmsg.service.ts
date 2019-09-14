@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import {  Response } from '@angular/http';
-import { Observable } from 'rxjs' ;
-
+import { throwError } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Injectable()
@@ -15,18 +14,16 @@ export class ProcessHTTPMsgService {
     console.log(body);
     return body || { };
   }
-  public handleError (error: Response | any) {
-    // In a real world app, you might use a remote logging infrastructure
+  public handleError(error: HttpErrorResponse | any) {
     let errMsg: string;
-    if (error instanceof Response) {
-      const body = error.json() || '';
-      const err = body.error || JSON.stringify(body);
-      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+
+    if (error.error instanceof ErrorEvent) {
+      errMsg = error.error.message;
     } else {
-      errMsg = error.message ? error.message : error.toString();
+      errMsg = `${error.status} - ${error.statusText || ''} ${error.error}`;
     }
-    console.error(errMsg);
-    return Observable.throw(errMsg);
+
+    return throwError(errMsg);
   }
 }
 

@@ -1,90 +1,94 @@
-<div class="container"
-     fxLayout="column"
-     fxLayoutGap="10px">
 
-     <div fxFlex>
-            <div>
-               <h3>About Us</h3>
-               <hr>
-            </div>
-     </div>
-
-      <div fxFlex>
-        <div fxLayout="column" fxLayout.gt-sm="row">
-          <div fxFlex="70">
-              <h2>Our History</h2>
-              <p>Started in 2010, Ristorante con Fusion quickly established itself as a culinary icon par excellence in Hong Kong. With its unique brand of world fusion cuisine that can be found nowhere else, it enjoys patronage from the A-list clientele in Hong Kong.  Featuring four of the best three-star Michelin chefs in the world, you never know what will arrive on your plate the next time you visit us.</p>
-              <p>The restaurant traces its humble beginnings to <em>The Frying Pan</em>, a successful chain started by our CEO, Mr. Peter Pan, that featured for the first time the world's best cuisines in a pan.</p>
-          </div>
-          <div fxFlex="30">
-              <mat-card>
-                <mat-card-header>
-                  <mat-card-title>
-                  <h2>Facts At a Glance</h2>
-                  </mat-card-title>
-                </mat-card-header>
-                <mat-card-content>
-                        <dl>
-                            <dt>Started</dt>
-                            <dd>3 Feb. 2013</dd>
-                            <dt>Major Stake Holder</dt>
-                            <dd>HK Fine Foods Inc.</dd>
-                            <dt>Last Year's Turnover</dt>
-                            <dd>$1,250,375</dd>
-                            <dt>Employees</dt>
-                            <dd>40</dd>
-                       </dl>
-                </mat-card-content>
-              </mat-card>
-          </div>
-        </div>
-      </div>
-      
-      <div fxFlex>
-                <mat-card>
-                    <blockquote>
-                        <h3>You better cut the pizza in four pieces because
-                            I'm not hungry enough to eat six.</h3>
-                        <footer>-- Yogi Berra,
-                          <cite>The Wit and Wisdom of Yogi Berra,
-                            P. Pepe, Diversion Books, 2014</cite>
-                        </footer>
-                    </blockquote>
-                </mat-card>
-      </div>
-
-
-        <div fxFlex>
-          <h2>Corporate Leadership</h2>
-       </div>
-
-       <mat-list fxFlex *ngIf="leaders" [@expand]>
-          <mat-list-item *ngFor="let leader of leaders">
-            <img mat-list-avatar src="{{BaseURL+leader.image}}" >
-            <p mat-line>
-              <span >{{leader.name}}</span>
-              <span>{{leader.abbr}}</span>
-            <p>
-                
-            <p mat-line>
-              <span>{{leader.designation}}</span>
-            <p>
-
-
-            <p mat-line>
-              <span>{{leader.description}}</span>
-            <p>
-
-      
-          </mat-list-item>
-        </mat-list>
-
-        <div [hidden]="leaders || errMess">
-          <mat-spinner></mat-spinner><h4>Loading.....Please wait</h4>
-        </div>
-
-        <div *ngIf="errMess" >
-            <h2>Error</h2>
-            <h4>{{ errMess }}</h4>
-        </div>
+<div class="container" style="margin-top: 150px">
+  <div class="row">
+    <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3">
+      <img class="img-fluid" src="../../assets/images/about title.png">
+    </div>
+  </div>  
 </div>
+
+
+<div class="container" style="margin-top: 100px">
+
+  <div class="row d-flex justify-content-center  align-items-center mb-5 mb-sm-0">
+    <div class="col-md-6 col-12">
+      <img class="img-fluid" src="../../assets/images/ab1.jpg" >
+    </div>
+    <div class="col-12 col-md-6 p-lg-5 p-2 mt-5 mt-md-0">
+      <div class="row justify-content-center align-items-center ">
+        <img src="../../assets/images/ABOUT1.jpg" class="img-fluid">
+  
+        <p class="mt-2">
+          Started in 2010, CheZ MeK quickly established itself as a culinary icon par excellence in Tunisia. With its unique brand of world fusion cuisine that can be found nowhere else, it enjoys patronage from the A-list clientele in Tunisia.  Featuring three of the best three-star Michelin chefs in the world, you never know what will arrive on your plate the next time you visit us.
+          The restaurant traces its humble beginnings to The Frying Pan, a successful chain started by our CEO, Mr. Peter Pan, that featured for the first time the world's best cuisines in a pan.
+  
+        </p>
+      </div> 
+    </div>
+  </div>
+</div>
+
+<div class="container" style="margin-top: 120px">
+  <div class="row justify-content-center align-items-center">
+    
+    <div class="col-12 col-md-6 p-lg-5 p-2">
+      <div class="row justify-content-center align-items-center">
+        <img src="../../assets/images/ABOUT2.jpg" class="img-fluid">
+  
+        <p class="mt-2">
+            Here at Royal Plate we work with only the best food supliers like small family farms, insuring that we always have the best and always fresh ingredients. You’ll find a large variety of dishes made to satisfy any taste, from sea food, steaks, variety of natural soups, pasta, salads, finest deserts and vines...
+
+
+        </p>
+      </div> 
+    </div>
+    <div class="col-md-6 col-12 ">
+      <img class="img-fluid" src="../../assets/images/ab2.jpg" >
+    </div>
+  </div>
+
+</div>
+
+
+
+<div class="row home-margin " style="margin-top: 150px" >
+  <div class="col-12" style="padding: 0px">
+    <img class="img-fluid" src="../../assets/images/chef.jpg" alt="image">
+  </div>
+</div>
+
+
+<div class="container" style="margin-top: 100px ; margin-bottom: 150px">
+
+    <div *ngIf="leaders || errMess; else loading">
+
+      <div class="row align-items-center" *ngIf="leaders" [@expand]>
+      <div class="col-12 col-md-4 mb-4 " *ngFor="let leader of leaders" >
+          <mat-card  >  
+            <img mat-card-image  src="{{BaseURL + leader.image}}">
+            <mat-card-content>
+              <img class="img-fluid" src="{{BaseURL + leader.designation}}" alt={{leader.name}}>
+              <p class="leaders">
+                {{leader.description}}
+              </p>
+            </mat-card-content>
+          </mat-card>
+      </div>
+      </div>
+
+      <div *ngIf="errMess">
+          <h2>Error</h2>
+          <h4>{{errMess}}</h4>
+        </div>
+    </div>
+
+      <ng-template #loading>
+        <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
+      </ng-template>
+
+</div>
+
+
+
+  
+

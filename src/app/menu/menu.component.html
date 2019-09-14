@@ -1,36 +1,149 @@
-<div class="container"
-     fxLayout="column"
-     fxLayoutGap="10px">
+<div class="container" style="margin-top: 150px">
+  <div class="row" >
+    <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3">
+      <img class="img-fluid" src="../../assets/images/menu title.png">
+    </div>
+  </div>  
+</div>
 
-  <div fxFlex>
-    <div>
-      <h3>Menu</h3>
-  
+
+<div class="container" style="margin-top: 100px">
+    <div class="row col-12">
+      <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3" >
+        <img class="img-fluid" src="../../assets/images/MENU 1.jpg">
+      </div>
+    </div>  
+</div>
+
+<!-- <div class="container"style="margin-top: 100px">
+
+   <div  *ngIf="dishes" [@expand]>
+    <mat-grid-list class="col-12 col-sm-6" >
+      <mat-grid-tile *ngFor="let dish of dishes" >
+        <img class="img-fluid" src="{{BaseURL+dish.image}}" alt={{dish.name}}>
+        <mat-grid-tile-footer>
+          <h1 mat-line>{{dish.name | uppercase}}</h1>
+        </mat-grid-tile-footer>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+
+  <div [hidden]="dishes || errMess">
+    <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
+  </div>
+
+  <div *ngIf="errMess">
+    <h2>Error</h2>
+    <h4>{{errMess}}</h4>
+  </div> 
+</div> -->
+
+<div class="container" style="margin-top: 50px">
+
+  <div class="row" *ngIf="startersdishes" [@expand] >
+    <div class="col-12 col-md-6 mt-3" *ngFor="let dish of startersdishes" [routerLink]="['/dishdetail', dish._id]" appHighlight>
+      <div class="row">
+      <div class="col-4">
+        <img class="col-12 img-fluid rounded-circle" src="{{BaseURL + dish.image}}" alt={{dish.name}}>
+      </div>
+      <div class="col-5">
+        <h4 >{{dish.name | uppercase}}</h4>
+        <p > {{ dish.description }} </p>
+      </div>
+      <div class="col-2 d-flex align-items-center justify-content-center" >
+        <h4  class="badge-pill badge-light price">{{dish.price}} $</h4>
+      </div>
+      </div>
     </div>
   </div>
+
+  <div [hidden]="startersdishes || errMess">
+    <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
+  </div>
+
+  <div *ngIf="errMess">
+    <h2>Error</h2>
+    <h4>{{errMess}}</h4>
+  </div> 
   
-  <div fxFlex *ngIf="dishes" [@expand]>
-      <mat-grid-list cols="2" rowHeight="200px">
-        <mat-grid-tile *ngFor="let dish of dishes" [routerLink]="['/dishdetail', dish.id]" appHighlight>
-          <img height="200px" src="{{BaseURL+dish.image}}" alt={{dish.name}}>
-          <mat-grid-tile-footer>
-            <h1 mat-line>{{dish.name | uppercase}}</h1>
-          </mat-grid-tile-footer>
-        </mat-grid-tile>
-      </mat-grid-list>
+</div>
+  
+
+<div class="container" style="margin-top: 90px">
+    <div class="row col-12">
+      <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3" >
+        <img class="img-fluid" src="../../assets/images/MENU 1.PNG">
+      </div>
+    </div>  
+</div>
+
+<div class="container" style="margin-top: 50px">
+
+    <div class="row" *ngIf="maindishes" [@expand] >
+      <div class="col-12 col-md-6 mt-3" *ngFor="let dish of maindishes" [routerLink]="['/dishdetail', dish._id]" appHighlight>
+        <div class="row">
+            <div class="col-4">
+              <img class="col-12 img-fluid rounded-circle" src="{{BaseURL + dish.image}}" alt={{dish.name}}>
+            </div>
+            <div class="col-5">
+              <h4 >{{dish.name | uppercase}}</h4>
+              <p > {{ dish.description }} </p>
+            </div>
+            <div class="col-2 d-flex align-items-center justify-content-center" >
+              <h4  class="badge-pill badge-light price">{{dish.price}} $</h4>
+            </div>
+            </div>
+      </div>
     </div>
-
-
-    <div [hidden]="dishes || errMess">
-        <mat-spinner></mat-spinner><h4>Loading.....Please wait</h4>
+  
+    <div [hidden]="maindishes || errMess">
+      <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
     </div>
-
-    <div *ngIf="errMess" >
+  
+    <div *ngIf="errMess">
       <h2>Error</h2>
-      <h4>{{ errMess }}</h4>
-
-    </div>
-
-  
-  </div>
+      <h4>{{errMess}}</h4>
+    </div> 
     
+  </div>
+
+
+
+    
+<div class="container" style="margin-top: 90px">
+    <div class="row col-12">
+      <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3" >
+        <img class="img-fluid" src="../../assets/images/MENU 3.PNG">
+      </div>
+    </div>  
+</div>
+
+<div class="container" style="margin-top: 50px">
+
+    <div class="row" *ngIf="dessertdishes" [@expand] >
+      <div class="col-12 col-md-6 mt-3" *ngFor="let dish of dessertdishes" [routerLink]="['/dishdetail', dish._id]" appHighlight>
+        <div class="row">
+            <div class="col-4">
+              <img class="col-12 img-fluid rounded-circle" src="{{BaseURL + dish.image}}" alt={{dish.name}}>
+            </div>
+            <div class="col-5">
+              <h4 >{{dish.name | uppercase}}</h4>
+              <p > {{ dish.description }} </p>
+            </div>
+            <div class="col-2 d-flex align-items-center justify-content-center" >
+              <h4  class="badge-pill badge-light price">{{dish.price}} $</h4>
+            </div>
+            </div>
+      </div>
+    </div>
+  
+    <div [hidden]="dessertdishes || errMess">
+      <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
+    </div>
+  
+    <div *ngIf="errMess">
+      <h2>Error</h2>
+      <h4>{{errMess}}</h4>
+    </div> 
+    
+  </div>

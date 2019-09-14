@@ -1,85 +1,79 @@
-<div class="container">
-   
-   
-  
-  
-  <div *ngIf="dish" [@Visibility]="Visibility" [@expand]>
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>
-          <h3>{{dish.name | uppercase}}</h3>
-        </mat-card-title>
-      </mat-card-header>
-      <img mat-card-image src="{{BaseURL+dish.image}}" alt={{dish.name}}>
-      <mat-card-content>
-        <p>{{dish.description}}
-        </p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-button [routerLink]="['/dishdetail',prev]">
-          <span class="fa fa-chevron-left fa-lg"></span>
-        </button>
-        <button mat-button (click)="goBack()">BACK</button>
-        <button mat-button>LIKE</button>
-        <button mat-button>SHARE</button>
-        <button mat-button [routerLink]="['/dishdetail',next]">
-          <span class="fa fa-chevron-right fa-lg"></span>
-        </button>
+<div class="p-20">
 
-      </mat-card-actions>
-    </mat-card>
-    
-  </div>
+  <div class="row full-width">
+      <div class="col-12 col-md-6 full-width" *ngIf="dish" [@Visibility]="Visibility" [@expand] >
+        <mat-card  >
+          <mat-card-header  >
+            <mat-card-title>
+              <h3>{{dish.name | uppercase}}</h3>
+            </mat-card-title>
+          </mat-card-header>
+          <img mat-card-image src="{{BaseURL+dish.image}}" alt={{dish.name}}>
+          <mat-card-content   class="full-width">
+            <p>{{dish.description}}
+            </p>
+          </mat-card-content>
+          <mat-card-actions  >
+            <button mat-button [routerLink]="['/dishdetail', prev]">
+              <span class="fa fa-chevron-left fa-lg"></span>
+            </button>
+            <!--<button mat-button (click)="goBack()">BACK</button>-->
+            <button mat-button>LIKE</button>
+            <button mat-button>SHARE</button>
+            <button mat-button [routerLink]="['/dishdetail', next]">
+              <span class="fa fa-chevron-right fa-lg"></span>
+            </button>
 
-  <div  *ngIf="dish" [@Visibility]="Visibility" [@expand]>
+          </mat-card-actions>
+        </mat-card>
+
+      </div>
+
+
+  <div  class="col-12 col-md-6 full-width" *ngIf="dish" [@Visibility]="Visibility" [@expand]>
     <mat-list  >
         <h3>Comments</h3>
       <mat-list-item *ngFor="let com of dish.comments " >
           <p mat-line>{{ com.comment }}</p>
           <p mat-line>{{ com.rating }} Stars</p>
-          <p mat-line>--{{ com.author }} 
+          <p mat-line>--{{ com.author.lastname | uppercase }} {{ com.author.firstname }}
               {{ com.date | date }}
           </p>
       </mat-list-item>
 
 
-      <mat-list *ngIf="CommentForm.valid">
-        <mat-list-item>
-          <h1 mat-line> {{ CommentForm.get('comment').value }}  </h1>
-           <p mat-line> {{ CommentForm.get('rating').value }}  Stars</p>
-           <p mat-line><span>-- {{ CommentForm.get('author').value }}</span> </p>
-         </mat-list-item>
-       </mat-list>
-       
-        <div >
+      <!--<mat-list *ngIf="CommentForm.valid">-->
+        <!--<mat-list-item>-->
+          <!--<h1 mat-line> {{ CommentForm.get('comment').value }}  </h1>-->
+           <!--<p mat-line> {{ CommentForm.get('rating').value }}  Stars</p>-->
+           <!--<p mat-line><span>&#45;&#45; {{ CommentForm.get('author').value }}</span> </p>-->
+         <!--</mat-list-item>-->
+       <!--</mat-list>-->
 
-
-        <form novalidate [formGroup]="CommentForm" (ngSubmit)="onSubmit()">
-          
-            <mat-form-field class="full-width"  >
-              <input matInput  formControlName="author" placeholder="Name" type="text" required>
-            </mat-form-field>
+        <form (ngSubmit)="onSubmit(f ,dish._id)" #f="ngForm">
 
             <mat-slider
-            formControlName="rating"
             thumbLabel
             tickInterval="5"
             min="0"
-            max="5">
-                
+            max="5"
+            ngModel
+            name="rating"
+            required>
+
             </mat-slider>
-        
+
             <mat-form-field class="full-width" >
-                <textarea matInput formControlName="comment" placeholder="Your Comment" rows=8></textarea>
-              
+                <textarea matInput ngModel name="comment" placeholder="Your Comment" rows=8 required></textarea>
             </mat-form-field>
-            
-            <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="CommentForm.invalid">Submit</button>
+
+            <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="f.invalid">Submit</button>
 
         </form>
-    </div>
 
     </mat-list>
+
+
   </div>
 
 
@@ -95,7 +89,7 @@
     </div>
    
   </div>
-   
 
+</div>
   
 

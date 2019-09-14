@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-
-import {MatDialog, MatDialogRef} from '@angular/material';
+import { Subscription } from 'rxjs'
+import { MatDialog } from '@angular/material';
 import { LoginComponent } from '../login/login.component' ;
+import { SignUpComponent } from '../sign-up/sign-up.component' ;
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -9,14 +11,44 @@ import { LoginComponent } from '../login/login.component' ;
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  
+  username: string = undefined;
+  subscription: Subscription;
 
-  constructor(private dialog:MatDialog) { }
+  constructor(public dialog: MatDialog,
+    private authService: AuthService ) { 
+    }
 
   ngOnInit() {
+    this.authService.loadUserCredentials();
+    this.subscription = this.authService.getUsername()
+      .subscribe(name => { console.log(name); this.username = name; });    
   }
 
-  openLoginForm(){
-    this.dialog.open(LoginComponent,{width:'400px',height:'350px'})
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
+  openLoginForm() {
+    let loginRef = this.dialog.open(LoginComponent, {width: '550px', height: '550px'});
+
+    loginRef.afterClosed()
+      .subscribe(result => {
+      });
+  }
+
+  openSignUpForm() {
+    let SignRef = this.dialog.open(SignUpComponent, {width: '550px', height: '550px'});
+
+    SignRef.afterClosed()
+      .subscribe(result => {
+      });
+  }
+  
+
+  logOut() {
+    this.username = undefined;
+    this.authService.logOut();
   }
 
 }

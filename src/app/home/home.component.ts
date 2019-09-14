@@ -1,11 +1,10 @@
 import { Component, OnInit,Inject } from '@angular/core';
-import { Dish } from '../shared/dish';
-import { DishService } from '../services/dish.service';
 import { Promotion } from '../shared/promotion';
 import { PromotionService } from '../services/promotion.service';
-import { Leader } from '../shared/leader';
-import { LeaderService } from '../services/leader.service';
 import { flyInOut ,expand} from '../animations/app.animations';
+import {NgForm} from '@angular/forms';
+import {Reservation} from '../shared/reservation';
+import {ReservationService} from '../services/reservation.service';
 
 
 @Component({
@@ -22,27 +21,46 @@ import { flyInOut ,expand} from '../animations/app.animations';
     ]
 })
 export class HomeComponent implements OnInit {
-  dish: Dish ;
-  promotion : Promotion;
-  leader : Leader ;
-  errMess:string ;
+
+
+  active = "active" ;
+  noactive = "" ;
+  ref :string  ;
+
+
+  promotions : Promotion[];
+  Time = ['6:00 pm','6:30 pm','7:00 pm','7:30 pm','8:00 pm','8:30 pm','9:00 pm','9:30 pm','10:00 pm','10:30 pm'];
+  Person =[1,2,3 ,4,5 ,6 ,7 ,8 ,9,10,11,12,13 ,14 ,15]
+  Ville =['Tunis','Medenine','Sfax'];
+
+  promo : string ;
   errMess1:string ;
-  errMess2:string ;
-
-
   
-  constructor(private dishservice:DishService,
+  
+  constructor(
     private promotionservice:PromotionService,
-    private leaderservice:LeaderService,
+    private reservationservice : ReservationService ,
     @Inject('BaseURL') private BaseURL ) { }
 
   ngOnInit() {
-    this.dishservice.getFeaturedDish().subscribe( dish => this.dish = dish ,
-      errmess => this.errMess = <any>errmess);
-    this.promotionservice.getFeaturedPromotion().subscribe( promotion => this.promotion = promotion,
+    this.promotionservice.getPromotions().subscribe(
+      promotions => {
+        this.promotions = promotions;
+        this.ref = promotions[0].name ;
+        },
       errmess => this.errMess1 = <any>errmess);
-    this.leaderservice.getFeaturedLeader().subscribe( leader => this.leader = leader ,
-      errmess => this.errMess2 = <any>errmess);
+
+  }
+
+  send(f: NgForm){
+    var res = new Reservation() ;
+    res.name = f.value.name ;
+    res.tel = f.value.tel ;
+    res.date = f.value.date ;
+    res.time = f.value.time ;
+    res.number = f.value.number ;
+    res.ville = f.value.ville ;
+    this.reservationservice.postReservation(res).subscribe()
   }
 
 }

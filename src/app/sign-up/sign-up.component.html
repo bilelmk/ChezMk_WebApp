@@ -1,0 +1,35 @@
+
+<div class="row mb-4 ">
+  <div class="col-6 offset-3">
+    <img class="img-fluid " src="../../assets/images/s.png" />
+  </div>
+  <!--<h2 class="mr-auto" style="display: inline-block;">Login</h2>-->
+
+  <div class="col-3">
+    <button mat-button mat-dialog-close  class="closeBtn">&times;</button>
+  </div>
+
+</div>
+<form (ngSubmit)="signup(f)" #f="ngForm">
+
+  <div class="col-12 mb-4">
+    <input class="home-input" placeholder="FirstName" type="text"  ngModel name="firstname" required>
+  </div>
+
+  <div class="col-12 mb-4" >
+    <input class="home-input" placeholder="LastName" type="text" ngModel name="lastname" required>
+  </div>
+
+  <div class="col-12 mb-4">
+    <input class="home-input" placeholder="Username" type="text" ngModel name="username" required>
+  </div>
+
+  <div class="col-12 mb-4">
+    <input class="home-input" placeholder="Password" type="password" ngModel name="pass" required>
+  </div>
+
+  <div class="col-12 mt-2 pl-3 pr-3">
+    <button  id='submit' class="col-12 " type="submit" color="primary">SIGNUP</button>
+  </div>
+
+</form>

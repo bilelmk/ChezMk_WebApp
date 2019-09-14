@@ -1,74 +1,139 @@
-<div class="container"
-     fxLayout="row"
-     fxLayout.sm="column"
-     fxLayout.xs="column"
-     fxLayoutAlign.gt-md="space-around center"
-     fxLayoutGap="10px">
 
-<mat-card *ngIf="dish" fxFlex [@expand]>
-  <mat-card-header>
-    <div mat-card-avatar></div>
-    <mat-card-title>
-      <h3>{{dish.name | uppercase}}</h3>
-    </mat-card-title>
-  </mat-card-header>
-  <img mat-card-image src="{{BaseURL+dish.image}}" alt={{dish.name}}>
-  <mat-card-content>
-    <p>{{dish.description}}
-    </p>
-  </mat-card-content>
-</mat-card>
+ <div class="container home-margin">
+  <div class="row" [@expand] >
 
-<div [hidden]="dish || errMess">
-    <mat-spinner></mat-spinner><h4>Loading.....Please wait</h4>
-</div>
-<div *ngIf="errMess" fxFlex>
-    <h2>Error</h2>
-    <h4>{{ errMess }}</h4>
-</div>
+    <div class="col-12 col-lg-6" >
 
-<mat-card *ngIf="promotion" fxFlex [@expand]>
-  <mat-card-header>
-    <div mat-card-avatar></div>
-    <mat-card-title>
-      <h3>{{promotion.name | uppercase}}</h3>
-    </mat-card-title>
-  </mat-card-header>
-  <img mat-card-image src="{{BaseURL+promotion.image}}" alt={{promotion.name}}>
-  <mat-card-content>
-    <p>{{promotion.description}}
-    </p>
-  </mat-card-content>
-</mat-card>
+      <mat-card  >
+        <mat-card-header>
+          <div mat-card-avatar></div>
 
-<div [hidden]="promotion || errMess1 ">
-    <mat-spinner></mat-spinner><h4>Loading.....Please wait</h4>
-</div>
-<div *ngIf="errMess1" fxFlex>
-    <h2>Error</h2>
-    <h4>{{ errMess }}</h4>
-</div>
+        </mat-card-header>
+        <div mat-card-image id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              <div *ngFor="let promotion of promotions" class="carousel-item " ngClass="{{ promotion.name == ref ? active : noactive}}">
+                <img class="d-block w-100" src="{{ BaseURL + promotion.image}}" alt="First slide">
+              </div>
+            </div>
+          </div>
 
-<mat-card *ngIf="leader" fxFlex [@expand]>
-    <mat-card-header>
-      <div mat-card-avatar></div>
-      <mat-card-title>
-        <h3>{{leader.name | uppercase}}</h3>
-      </mat-card-title>
-    </mat-card-header>
-    <img mat-card-image src="{{BaseURL+leader.image}}" alt={{leader.name}}>
-    <mat-card-content>
-      <p>{{leader.description}}
-      </p>
-    </mat-card-content>
-  </mat-card>
+      </mat-card>
+    </div>
 
-  <div [hidden]="leader || errMess2 ">
-      <mat-spinner></mat-spinner><h4>Loading.....Please wait</h4>
+  
+  
+    
+      <div class="col-12 col-lg-6">
+          <div *ngFor="let promotion of promotions" class="row mt-5 mb-4" style="height: 150px" >
+            <img class="col-4 rounded-circle" src="{{ BaseURL + promotion.image}}" alt={{promotion.name}}>
+            <div class="col-5">
+              <h4 mat-line>{{ promotion.name }}</h4>
+              <p mat-line> {{ promotion.description }} </p>
+            </div> 
+            <div class="col-3 d-flex align-items-center justify-content-center" >
+              <h4  class="badge-pill badge-light price">{{promotion.price}} $</h4>
+            </div>
+            <mat-divider></mat-divider> 
+      </div>
+
+
+
+         
+    </div>
   </div>
-  <div *ngIf="errMess2" fxFlex>
-      <h2>Error</h2>
-      <h4>{{ errMess }}</h4>
+</div>    
+
+
+<div class="row home-margin"  >
+  <div class="col-12" style="padding: 0px">
+    <img class="img-fluid" src="../../assets/images/img4.jpg" alt="image">
+  </div>
+</div>
+
+
+  <div class="m-home-margin" >
+    <app-catering-carousel></app-catering-carousel>
   </div>
 
+
+<div class="row home-margin" >
+  <div class="col-12" style="padding: 0px">
+    <img class="img-fluid" src="../../assets/images/img3.jpg" alt="image">
+  </div>
 </div>
+
+
+
+
+
+
+
+<div class="container m-home-margin" style="margin-bottom: 150px">
+  <div class="row">
+
+    <div class="col-12  col-md-4 col-sm-6 d-none d-sm-block">
+      <img class="img-fluid" src="../../assets/images/img5.jpg" alt="">
+    </div>
+
+    <div class="col-12 col-md-4 col-sm-6 mt-lg-5">
+
+      <div >
+        <img class="img-fluid" src="../../assets/images/RES.png">
+      </div>
+      
+      <form (ngSubmit)="send(f)" #f=ngForm>
+          <div class="col-12 mt-4 mb-1" >
+              <input class="home-input " name="name" ngModel  placeholder="Your Name" type="text">
+          </div>
+  
+          <div class="col-12 mt-3 mb-1">
+              <input class="home-input " name="tel" ngModel placeholder="Phone Number" type="tel">
+          </div>
+
+          <div class="col-12 mt-3 mb-1">
+              <input class="home-input " name="date" ngModel placeholder="dd/mm/yyyy" type="date">
+          </div>
+
+          <div class="col-12 mt-3 mb-1">
+              <select class="home-input " name="time" ngModel="Time"  >
+                <option disabled selected>Time</option>
+                <option *ngFor="let time of Time" >
+                  {{time}}
+                </option>  
+              </select>
+          </div>
+
+          <div class="col-12 mt-3 mb-1">
+              <select class="home-input " name="number" ngModel="Number of people"  >
+                  <option disabled selected>Number of people</option>
+                  <option *ngFor="let person of Person" >
+                    {{person}}
+                  </option>  
+                </select>
+          </div>
+
+        <div class="col-12 mt-3 mb-1">
+          <select class="home-input " name="ville" ngModel="Ville" type="text"  >
+            <option disabled selected>Ville</option>
+            <option *ngFor="let ville of Ville" >
+              {{ville}}
+            </option>
+          </select>
+        </div>
+
+          <div class="col-12 mt-3 ">
+            <button class="home-btn" type="submit">FIND A TABLE</button>
+          </div>
+           
+      </form>
+    </div>
+
+    <div class="col-12  col-md-4 d-none d-md-block">
+        <img class="img-fluid" src="../../assets/images/img6.jpg" alt="">
+    </div>
+
+        
+</div>   
+
+
+

@@ -29,3 +29,18 @@ $background-ja:#fbda9a;
     color:$background-pale ;
     font-size: 150% ;
 }
+.row{
+    margin-right: 0px ;
+}
+.user-menu{
+   margin-top: 50px ;
+}
+
+.mat-menu-item{
+    background-color:$background-dark;
+    color: white;
+}
+
+.mat-menu-item:hover{
+    color: $background-light;
+}

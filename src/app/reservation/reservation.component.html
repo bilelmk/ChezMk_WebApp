@@ -1,0 +1,66 @@
+<div class="container contact-margin">
+  <div class="row">
+    <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3">
+      <img class="img-fluid" src="../../assets/images/res title.png">
+    </div>
+  </div>  
+</div>
+
+
+<div class='container ' style="margin-bottom: 150px">
+  <form (ngSubmit)="send(f)" #f="ngForm" class="col-12">
+
+    <div class="row" >
+        <div class="col-12 col-md-4 mt-3 mb-4">
+          <input class="home-input"  placeholder="Your Name"
+                 type="text" name="name" ngModel required>
+        </div>
+    
+
+        <div class="col-12 col-md-4 mt-3 mb-4"  >
+          <input class="home-input "  placeholder="Phone Number"
+                 type="text"  name="tel" ngModel >
+        </div>
+
+        <div class="col-12 col-md-4 mt-3 mb-4">
+            <select class="home-input " name="ville" ngModel="Ville" type="text"  >
+                <option disabled selected>Ville</option>
+                <option *ngFor="let ville of Ville" >
+                  {{ville}}
+                </option>  
+              </select>
+          </div>
+
+      <div class="col-12 col-md-4 mt-3 mb-3">
+          <input class="home-input "  name="date" ngModel placeholder="dd/mm/yyyy" type="date">
+      </div>
+
+        <div class="col-12 col-md-4  mt-3 mb-3">
+          <select class="home-input" name="time" ngModel="Time" type="text"  >
+              <option disabled selected>Time</option>
+              <option *ngFor="let time of Time" >
+                {{time}}
+              </option>  
+            </select>
+        </div>
+
+
+        <div class="col-12 col-md-4  mt-3 mb-3">
+          <select class="home-input"  name="number" ngModel="Number of people" type="text"  >
+              <option disabled selected>Number of people</option>
+              <option *ngFor="let person of Person ;"  >
+                {{person}}
+              </option>  
+            </select>
+        </div>
+
+
+        <div class="col-12 col-md-8 offset-md-2 mt-3 mb-3">
+          <button type="submit" class="contact-btn">SEND</button>
+        </div>
+
+        </div>
+      
+  </form>
+  </div>
+  <app-location></app-location>
